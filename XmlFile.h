@@ -1,0 +1,28 @@
+#ifndef XMLFILE_H
+#define XMLFILE_H
+
+#include <iostream>
+
+
+using namespace std;
+
+
+class XmlFile{
+
+
+
+
+
+public:
+
+
+
+
+};
+
+
+
+
+
+
+#endif // XMLFILE_H
