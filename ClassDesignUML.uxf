@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>330</x>
+      <y>402</y>
+      <w>186</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>BudgetApp
+-
+- userManager: UserManager
+- *clientManager: ClientManager
+- displaysLoginAndRegistatrionScreen(): void
+- SelectAnOptionInTheMainMenu(): void
+- displaysTheMainMenu(): void
+-
++ BudgetApp(): constructor
++ ~BudgetApp()
++ selectOptionsFromTheLoginMenu(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>66</y>
+      <w>138</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>User
+-
+- UserId: integer
+- Login: string
+- Password: string
+- Name: string
+- Surname: string
+-
++ setUserId(): void
++ setLogin(): void
++ setPassword(): void
++ setName(): void
++ setSurname(): void
+
++ getUserId(): integer
++ getLogin(): string
++ getPassword(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>282</y>
+      <w>168</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>UserManager
+-
+- users: vector &lt;User&gt;
+- idOfTheLoggedInUser: integer
+- enterANewUser(): User
+- WhetherLoginExists(): Bool
+- getNewUserID(): Integer
+- fileWithUsers: FileWithUsers
+-
++ UserManager(): constructor
++ getLoggedInUserId(): int
++ setLoggedInUserId(): void
++ loginUser(): void
++ changePassword(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>816</x>
+      <y>456</y>
+      <w>168</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>SupportingMethods
+-
++ convertIntegerToString(): string
++ convertStringToInteger(): integer
++ replaceTheCommaWithAPeriod(): char
++ loadLine(): string
++ loadInteger(): integer
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>570</x>
+      <y>528</y>
+      <w>192</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>ClientManager
+-
+- LOGGED_IN_USER_ID: integer
+- incomes: vector &lt;Income&gt;
+- expenses: vector &lt;Expense&gt;
+- fileWithIncomes: FileWithIncomes
+- fileWithExpenses: FileWithExpenses
+-
++ ClientManager(): constructor
++ addIncome(): void
++ AddExpenses(): void
++ balanceThisMonth(): void
++ previousMonthsBalance(): void
++ balanceSheetForTheSelectedPeriod(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>282</y>
+      <w>162</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>FileWithUsers
+-
++ FileWithUsers(): constructor
++ addUserToFile(): void
++ loadUsersFromFile(): vector &lt;User&gt;
++ saveAllUsersToFile(): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>666</x>
+      <y>774</y>
+      <w>114</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Income
+-
+- UserId: integer
+- Date: string
+- Item: string
+- amount: float 
+-
++ setUserId(): void
++ setDate(): void
++ setItem(): void
++ setAmount(): void
+
++ getUserId(): integer
++ getDate(): string
++ getItem(): string
++ getAmount(): float
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>804</x>
+      <y>774</y>
+      <w>114</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Expense
+-
+- UserId: integer
+- Date: string
+- Item: string
+- amount: float 
+-
++ setUserId(): void
++ setDate(): void
++ setItem(): void
++ setAmount(): void
+
++ getUserId(): integer
++ getDate(): string
++ getItem(): string
++ getAmount(): float</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>588</y>
+      <w>168</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>FileWithIncomes
+-
++ FileWithIncomes
++ loadIncomeFromFile(): vector (Income)
++ addIncomesToFile(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>876</x>
+      <y>654</y>
+      <w>174</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>FileWithExpenses
+-
++ FileWithExpenses
++ loadIncomeFromFile(): vector (Expense)
++ addIncomesToFile(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>516</y>
+      <w>174</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0;270.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>348</y>
+      <w>174</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0;270.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>234</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>804</x>
+      <y>234</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>318</y>
+      <w>66</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>744</x>
+      <y>402</y>
+      <w>96</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;10.0;140.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>882</x>
+      <y>348</y>
+      <w>18</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>534</y>
+      <w>84</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;120.0;130.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>894</x>
+      <y>534</y>
+      <w>18</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>942</x>
+      <y>534</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>906</x>
+      <y>726</y>
+      <w>18</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>726</y>
+      <w>144</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.</panel_attributes>
+    <additional_attributes>220.0;10.0;220.0;50.0;10.0;50.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>666</y>
+      <w>18</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>714</x>
+      <y>666</y>
+      <w>138</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;210.0;80.0;210.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1158</x>
+      <y>498</y>
+      <w>108</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>XmlFile
+-
++ getFileName(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>336</y>
+      <w>240</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>380.0;270.0;380.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1086</x>
+      <y>534</y>
+      <w>96</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>140.0;10.0;140.0;140.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>534</y>
+      <w>162</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>250.0;10.0;250.0;290.0;10.0;290.0</additional_attributes>
+  </element>
+</diagram>
