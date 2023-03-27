@@ -8,12 +8,14 @@
 
 #include "User.h"
 #include "AuxiliaryMethods.h"
+#include "FileWithUsers.h"
 
 using namespace std;
 
 
 class UserManager{
 
+    FileWithUsers fileWithUsers;
     vector <User> users;
     User enterANewUser();
 
@@ -21,6 +23,11 @@ class UserManager{
     int getNewUserId();
 
 public:
+
+    UserManager(string userFileName) : fileWithUsers(userFileName){
+
+        users = fileWithUsers.loadUsersFromFile();
+    };
 
     void userRegistration();
 

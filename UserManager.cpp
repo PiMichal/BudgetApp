@@ -5,7 +5,7 @@ void UserManager::userRegistration() {
     User user = enterANewUser();
 
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    fileWithUsers.addUserToFile(user);
 
     cout << endl << "The account has been successfully created" << endl << endl;
     system("pause");
@@ -62,6 +62,7 @@ int UserManager::getNewUserId()
     else
         return users.back().getUserId() + 1;
 }
+
 
 void UserManager::printvector(){
     for (int i = 0; i < (int) users.size(); i++){

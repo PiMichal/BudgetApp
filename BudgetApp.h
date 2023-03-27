@@ -14,6 +14,7 @@ class BudgetApp{
     void displayTheMainMenu();
 
 public:
+    BudgetApp(string userFileName) : userManager(userFileName){};
 
     void selectAnOptionInTheMainMenu();
 

@@ -20,7 +20,7 @@ void BudgetApp::selectAnOptionInTheMainMenu(){
         switch (getchar()) {
         case '1':
             userManager.userRegistration();
-            userManager.printvector();
+            //userManager.printvector();
             break;
         case '2':
             /*uzytkownikMenedzer.logowanieUzytkownika();
