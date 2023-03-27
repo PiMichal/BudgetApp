@@ -47,9 +47,7 @@ vector <User> FileWithUsers::loadUsersFromFile() {
             users.push_back(user);
             xml.OutOfElem();
         }
-
     }
-
     xml.ResetPos();
     return users;
 }

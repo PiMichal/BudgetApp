@@ -1,5 +1,13 @@
 #include "UserManager.h"
 
+void UserManager::setLoggedInUserId(int newIdOfTheLoggedInUser){
+    idOfTheLoggedInUser = newIdOfTheLoggedInUser;
+}
+
+int UserManager::getLoggedInUserId(){
+    return idOfTheLoggedInUser;
+}
+
 void UserManager::userRegistration() {
     system("cls");
     User user = enterANewUser();
@@ -63,15 +71,38 @@ int UserManager::getNewUserId()
         return users.back().getUserId() + 1;
 }
 
+int UserManager::loginUser()
+{
+    system("cls");
+    User user;
+    string login = "", password = "";
 
-void UserManager::printvector(){
-    for (int i = 0; i < (int) users.size(); i++){
-        cout << users[i].getUserId() << endl;
-        cout << users[i].getLogin() << endl;
-        cout << users[i].getPassword() << endl;
-        cout << users[i].getName() << endl;
-        cout << users[i].getSurname() << endl;
+    cout << "Enter login: ";
+    login = AuxiliaryMethods::loadLine();
+
+    for (int i = 0; i < (int) users.size(); i++)
+    {
+        if (users[i].getLogin() == login)
+        {
+            for (int numberOfTrials = 3; numberOfTrials > 0; numberOfTrials--)
+            {
+                cout << "Enter password. Attempt: " << numberOfTrials << ": ";
+                password = AuxiliaryMethods::loadLine();
+
+                if (users[i].getPassword() == password)
+                {
+                    cout << endl << "You have logged in." << endl << endl;
+                    system("pause");
+
+                    return idOfTheLoggedInUser = users[i].getUserId();
+                }
+            }
+            cout << "The wrong password was entered 3 times." << endl;
+            system("pause");
+            return 0;
+        }
     }
+    cout << "There is no user with this login." << endl << endl;
     system("pause");
-
+    return 0;
 }

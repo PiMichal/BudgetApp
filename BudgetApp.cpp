@@ -20,16 +20,16 @@ void BudgetApp::selectAnOptionInTheMainMenu(){
         switch (getchar()) {
         case '1':
             userManager.userRegistration();
-            //userManager.printvector();
             break;
         case '2':
-            /*uzytkownikMenedzer.logowanieUzytkownika();
-            if (uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika() > 0) {
-
-                adresatMenadzer = new AdresatMenedzer(plikTekstowy.pobierzNazwePliku(), uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
-                wybierzOpcjeZMenuUzytkownika();
+            userManager.loginUser();
+            if (userManager.getLoggedInUserId() > 0) {
+                cout << "WITAM WITAM";
+                system("pause");
+                //adresatMenadzer = new AdresatMenedzer(plikTekstowy.pobierzNazwePliku(), uzytkownikMenedzer.pobierzIdZalogowanegoUzytkownika());
+                //wybierzOpcjeZMenuUzytkownika();
             }
-            */
+
             break;
         case '9':
             exit(0);
