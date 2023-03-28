@@ -19,7 +19,7 @@ class FileWithUsers :public XmlFile{
 
 public:
 
-    FileWithUsers(string userFileName) : XmlFile(userFileName){};
+    FileWithUsers(string userFileName, string incomesFileName, string expensesFileName) : XmlFile(userFileName, incomesFileName, expensesFileName){};
 
     vector <User> loadUsersFromFile();
 

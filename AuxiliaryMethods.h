@@ -3,17 +3,24 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
 class AuxiliaryMethods{
 
 
+
 public:
 
-    static string convertIntegerToString(int number);
+
     static int convertStringToInteger(string number);
+
+    static string convertIntegerToString(int number);
     static string loadLine();
+
+    static char loadCharacter();
 
 };
 

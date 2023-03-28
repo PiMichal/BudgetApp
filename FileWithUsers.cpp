@@ -17,7 +17,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save(XmlFile::getFileName());
+    xml.Save(XmlFile::getUserFileName());
     xml.ResetPos();
 
 }
@@ -27,7 +27,7 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     User user;
     vector <User> users;
 
-    if (xml.Load(XmlFile::getFileName())) {
+    if (xml.Load(XmlFile::getUserFileName())) {
         xml.FindElem("Users");
         xml.IntoElem();
 

@@ -1,14 +1,23 @@
 #include "XmlFile.h"
 
-string XmlFile::getFileName(){
+string XmlFile::getUserFileName(){
 
-    return FILENAME;
+    return USER_FILE_NAME;
+}
 
+string XmlFile::getIncomesFileName(){
+
+    return INCOMES_FILE_NAME;
+}
+
+string XmlFile::getExpensesFileName(){
+
+    return EXPENSES_FILE_NAME;
 }
 
 bool XmlFile::whetherTheFileIsEmpty(){
 
-    bool fileExists = xml.Load(FILENAME);
+    bool fileExists = xml.Load(USER_FILE_NAME);
 
     return fileExists;
 

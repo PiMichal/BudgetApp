@@ -26,7 +26,7 @@ class UserManager{
 
 public:
 
-    UserManager(string userFileName) : fileWithUsers(userFileName){
+    UserManager(string userFileName, string incomesFileName, string expensesFileName) : fileWithUsers(userFileName, incomesFileName, expensesFileName){
 
         users = fileWithUsers.loadUsersFromFile();
         idOfTheLoggedInUser = 0;
