@@ -27,7 +27,10 @@ class ClientManager{
 
     Income introductionOfNewIncomes();
 
+    bool checkNumber(string numberToCheck);
+
     string dateEntry();
+
 
 public:
 

@@ -1,9 +1,5 @@
 #include "DateValidation.h"
 
-bool DateValidation::is_digits(string date) {
-    return all_of(date.begin(), date.end(), ::isdigit);
-}
-
 bool DateValidation::numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck){
 
     int baseYearMin = 20000101;
@@ -51,7 +47,7 @@ string DateValidation::dateConversionWithoutDash(string dateWithDash){
 
 bool DateValidation::dateCheck(string dateEnteredForCheck) {
 
-    if (dateEnteredForCheck.size() == 10 && is_digits(dateConversionWithoutDash(dateEnteredForCheck)) && numberOfDaysInTheGivenMonthCheck(dateEnteredForCheck))
+    if (dateEnteredForCheck.size() == 10 && AuxiliaryMethods::is_digits(dateConversionWithoutDash(dateEnteredForCheck)) && numberOfDaysInTheGivenMonthCheck(dateEnteredForCheck))
         return true;
 
     return false;

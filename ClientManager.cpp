@@ -25,12 +25,35 @@ string ClientManager::dateEntry() {
     cout << "Enter date (rrrr-mm-dd): ";
     date = AuxiliaryMethods::loadLine();
 
-    while(!dateValidation.dateCheck(date)){
+    while(!dateValidation.dateCheck(date)) {
         cout << "Incorrect date. Enter again: ";
         date = AuxiliaryMethods::loadLine();
     }
 
     return date;
+}
+
+bool ClientManager::checkNumber(string numberToCheck) {
+
+    int counter = 0;
+    if (numberToCheck.size() >= 1) {
+        for (int i = 0; i < numberToCheck.size(); i++) {
+            if (numberToCheck[i] == '.')
+                counter += 1;
+        }
+
+    }
+    else
+        return true;
+
+    if (counter >= 1)
+        numberToCheck.erase(find(numberToCheck.begin(), numberToCheck.end(), '.'));
+
+    if (AuxiliaryMethods::is_digits(numberToCheck) && (counter == 0 || counter == 1))
+        return false;
+
+
+    return true;
 }
 
 Income ClientManager::introductionOfNewIncomes() {
@@ -39,32 +62,28 @@ Income ClientManager::introductionOfNewIncomes() {
     income.setUserId(LOGGED_IN_USER_ID);
     char sign;
 
-    cout << "Add with today's date (Y/N) ?" << endl;
+    cout << "Add with today's date (Y/N) ?: ";
     sign = AuxiliaryMethods::loadCharacter();
 
     if (sign == 'n' || sign == 'N') {
         income.setDate(dateEntry());
     } else
         income.setDate(dateValidation.currentDate());
-/*
-        cout << "Podaj imie: ";
-        adresat.ustawImie(MetodyPomocnicze::wczytajLinie());
-        adresat.ustawImie(zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresat.pobierzImie()));
 
-        cout << "Podaj nazwisko: ";
-        adresat.ustawNazwisko(MetodyPomocnicze::wczytajLinie());
-        adresat.ustawNazwisko(zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresat.pobierzNazwisko()));
+    cout << "Enter what the income relates to ?: ";
+    income.setItem(AuxiliaryMethods::loadLine());
 
-        cout << "Podaj numer telefonu: ";
-        adresat.ustawNumerTelefonu(MetodyPomocnicze::wczytajLinie());
+    cout << "Enter the amount of income: ";
 
-        cout << "Podaj email: ";
-        adresat.ustawEmail(MetodyPomocnicze::wczytajLinie());
+    string number = AuxiliaryMethods::loadNumber();
 
-        cout << "Podaj adres: ";
-        adresat.ustawAdres(MetodyPomocnicze::wczytajLinie());
+    while(checkNumber(number)) {
+        cout << "Invalid number. Try again: ";
+        number = AuxiliaryMethods::loadNumber();
+    }
 
-        return income;
-*/
+    income.setAmount(stof(number));
+
+    return income;
 }
 

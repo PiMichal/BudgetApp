@@ -4,16 +4,16 @@ void Income::setUserId(int newId) {
     userId = newId;
 }
 
+void Income::setAmount(float newAmount) {
+    amount = newAmount;
+}
+
 void Income::setDate(string newDate) {
     date = newDate;
 }
 
 void Income::setItem(string newItem) {
     item = newItem;
-}
-
-void Income::setAmount(float newAmount) {
-    amount = newAmount;
 }
 
 int Income::getUserId() {

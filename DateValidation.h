@@ -14,7 +14,6 @@ using namespace std;
 
 class DateValidation{
 
-    static bool is_digits(string date);
     static bool numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck);
 
     static int countTheNumberOfDaysInAGivenMonth(int year, int month);
