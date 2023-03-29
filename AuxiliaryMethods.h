@@ -11,6 +11,7 @@ using namespace std;
 
 class AuxiliaryMethods{
 
+
     static string removeCharacterFromNumber(string number);
 
 public:
@@ -19,6 +20,9 @@ public:
 
     static int convertStringToInteger(string number);
 
+    static float convertStringToFloat(string number);
+
+    static string convertFloatToString(float number);
     static string loadNumber();
     static string loadLine();
     static string convertIntegerToString(int number);

@@ -24,7 +24,7 @@ void BudgetApp::selectAnOptionInTheMainMenu(){
         case '2':
             userManager.loginUser();
             if (userManager.getLoggedInUserId() > 0) {
-                clientManager = new ClientManager(userManager.getLoggedInUserId());
+                clientManager = new ClientManager(userManager.getLoggedInUserId(), INCOME_FILE_NAME, EXPENSE_FILE_NAME);
                 selectTheOptionInTheCustomerMenu();
             }
             break;

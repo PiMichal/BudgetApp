@@ -7,20 +7,22 @@
 #include "AuxiliaryMethods.h"
 #include "User.h"
 #include "Markup.h"
-#include "XmlFile.h"
 
 using namespace std;
 
 
-class FileWithUsers :public XmlFile{
+class FileWithUsers{
 
     CMarkup xml;
+
+    const string USER_FILE_NAME;
+
+    bool isTheFileEmpty();
 
 
 public:
 
-    FileWithUsers(string userFileName, string incomesFileName, string expensesFileName) : XmlFile(userFileName, incomesFileName, expensesFileName){};
-
+    FileWithUsers(string userFileName) : USER_FILE_NAME(userFileName){};
     vector <User> loadUsersFromFile();
 
     void addUserToFile(User user);

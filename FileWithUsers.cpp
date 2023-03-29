@@ -1,8 +1,16 @@
 #include "FileWithUsers.h"
 
+bool FileWithUsers::isTheFileEmpty(){
+
+    bool fileExists = xml.Load(USER_FILE_NAME);
+
+    return fileExists;
+
+}
+
 void FileWithUsers::addUserToFile(User user) {
 
-    if (!XmlFile::whetherTheFileIsEmpty()) {
+    if (!isTheFileEmpty()) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -17,7 +25,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save(XmlFile::getUserFileName());
+    xml.Save(USER_FILE_NAME);
     xml.ResetPos();
 
 }
@@ -27,7 +35,7 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     User user;
     vector <User> users;
 
-    if (xml.Load(XmlFile::getUserFileName())) {
+    if (xml.Load(USER_FILE_NAME)) {
         xml.FindElem("Users");
         xml.IntoElem();
 

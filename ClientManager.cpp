@@ -9,14 +9,12 @@ void ClientManager::addIncomes() {
 
     incomes.push_back(income);
 
-    /*
-    if (plikZadresatami.dopiszAdresataDoPliku(adresat))
-        cout << "New income added" << endl;
-    else
-        cout << "Error. Failed to add new income" << endl;
+    fileWithIncomes.addIncomesToFile(income);
+
+    cout << "New income added" << endl;
 
     system("pause");
-    */
+
 }
 
 string ClientManager::dateEntry() {
@@ -37,11 +35,10 @@ bool ClientManager::checkNumber(string numberToCheck) {
 
     int counter = 0;
     if (numberToCheck.size() >= 1) {
-        for (int i = 0; i < numberToCheck.size(); i++) {
+        for (int i = 0; i < (int) numberToCheck.size(); i++) {
             if (numberToCheck[i] == '.')
                 counter += 1;
         }
-
     }
     else
         return true;
@@ -51,7 +48,6 @@ bool ClientManager::checkNumber(string numberToCheck) {
 
     if (AuxiliaryMethods::is_digits(numberToCheck) && (counter == 0 || counter == 1))
         return false;
-
 
     return true;
 }

@@ -6,9 +6,17 @@ bool AuxiliaryMethods::is_digits(string date) {
 
 int AuxiliaryMethods::convertStringToInteger(string number) {
 
-    int convertedNumber = stoi(number);
-    return convertedNumber;
+    return stoi(number);
+}
 
+float AuxiliaryMethods::convertStringToFloat(string number) {
+
+    return stof(number);
+}
+
+string AuxiliaryMethods::convertFloatToString(float number){
+
+    return to_string(number);
 }
 
 string AuxiliaryMethods::removeCharacterFromNumber(string number) {

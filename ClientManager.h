@@ -34,8 +34,8 @@ class ClientManager{
 
 public:
 
-    ClientManager(int loggedInUserId) : LOGGED_IN_USER_ID(loggedInUserId){
-
+    ClientManager(int loggedInUserId, string incomeFileName, string expenseFileName) : LOGGED_IN_USER_ID(loggedInUserId), fileWithIncomes(incomeFileName), fileWithExpenses(expenseFileName){
+        incomes = fileWithIncomes.loadIncomesFromFile();
     };
 
     void addIncomes();
