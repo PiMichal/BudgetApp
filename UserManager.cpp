@@ -106,3 +106,24 @@ int UserManager::loginUser()
     system("pause");
     return 0;
 }
+
+void UserManager::changeThePasswordOfALoggedinUser() {
+
+    User user;
+    system("cls");
+    string newPassword = "";
+    cout << "Enter a new password: ";
+    newPassword = AuxiliaryMethods::loadLine();
+
+    for (int i = 0; i < (int) users.size(); i++)
+    {
+        if (users[i].getUserId() == idOfTheLoggedInUser)
+        {
+            users[i].setPassword(newPassword);
+            cout << "The password has been changed." << endl << endl;
+            system("pause");
+        }
+    }
+
+    fileWithUsers.changeUserPasswordOnFile(idOfTheLoggedInUser, newPassword);
+}

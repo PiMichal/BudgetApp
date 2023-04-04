@@ -74,7 +74,7 @@ void BudgetApp::selectTheOptionInTheCustomerMenu() {
             clientManager -> balanceSheetForTheSelectedPeriod();
             break;
         case '6':
-            //adresatMenadzer->edytujAdresata();
+            userManager.changeThePasswordOfALoggedinUser();
             break;
         case '9':
             logOut = false;

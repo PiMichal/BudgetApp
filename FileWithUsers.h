@@ -26,7 +26,7 @@ public:
     vector <User> loadUsersFromFile();
 
     void addUserToFile(User user);
-
+    void changeUserPasswordOnFile(int idOfTheLoggedInUser, string newPassword);
 
 };
 
