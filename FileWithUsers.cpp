@@ -2,7 +2,7 @@
 
 void FileWithUsers::addUserToFile(User user) {
 
-    if (!XmlFile::whetherTheFileIsEmpty()) {
+    if (!isTheFileEmpty()) {
         xml.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
         xml.AddElem("Users");
     }
@@ -17,7 +17,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save(XmlFile::getFileName());
+    xml.Save(getFileName());
     xml.ResetPos();
 
 }
@@ -27,7 +27,7 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     User user;
     vector <User> users;
 
-    if (xml.Load(XmlFile::getFileName())) {
+    if (xml.Load(getFileName())) {
         xml.FindElem("Users");
         xml.IntoElem();
 
@@ -50,4 +50,26 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     }
     xml.ResetPos();
     return users;
+}
+
+void FileWithUsers::changeUserPasswordOnFile(int idOfTheLoggedInUser, string newPassword) {
+
+
+    xml.FindElem("Users");
+    xml.IntoElem();
+
+    while (xml.FindElem("User")) {
+        xml.IntoElem();
+        xml.FindElem("UserId");
+
+        if (AuxiliaryMethods::convertStringToInteger(xml.GetData()) == idOfTheLoggedInUser){
+            xml.FindElem("Login");
+            xml.FindElem("Password");
+            xml.SetData(newPassword);
+            break;
+        }
+            xml.OutOfElem();
+    }
+    xml.Save(getFileName());
+    xml.ResetPos();
 }

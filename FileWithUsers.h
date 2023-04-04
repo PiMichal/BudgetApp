@@ -16,15 +16,13 @@ class FileWithUsers :public XmlFile{
 
     CMarkup xml;
 
-
 public:
 
     FileWithUsers(string userFileName) : XmlFile(userFileName){};
-
     vector <User> loadUsersFromFile();
 
     void addUserToFile(User user);
-
+    void changeUserPasswordOnFile(int idOfTheLoggedInUser, string newPassword);
 
 };
 

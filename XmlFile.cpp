@@ -1,15 +1,15 @@
 #include "XmlFile.h"
 
+
 string XmlFile::getFileName(){
 
-    return FILENAME;
-
+    return FILE_NAME;
 }
 
-bool XmlFile::whetherTheFileIsEmpty(){
+bool XmlFile::isTheFileEmpty(){
 
-    bool fileExists = xml.Load(FILENAME);
+    bool fileExists = xml.Load(FILE_NAME);
 
     return fileExists;
-
 }
+

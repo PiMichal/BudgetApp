@@ -11,16 +11,16 @@ using namespace std;
 class XmlFile{
 
     CMarkup xml;
-    const string FILENAME;
+    const string FILE_NAME;
 
 
 public:
 
-    XmlFile(string userFileName) : FILENAME(userFileName){};
+    XmlFile(string fileName) : FILE_NAME(fileName){};
 
     string getFileName();
-    bool whetherTheFileIsEmpty();
 
+    bool isTheFileEmpty();
 
 };
 

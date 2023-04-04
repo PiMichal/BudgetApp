@@ -3,17 +3,32 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
 class AuxiliaryMethods{
 
 
+    static string removeCharacterFromNumber(string number);
+
 public:
 
-    static string convertIntegerToString(int number);
+    static bool is_digits(string date);
+
     static int convertStringToInteger(string number);
+
+    static float convertStringToFloat(string number);
+
+    static string loadNumber();
     static string loadLine();
+    static string convertIntegerToString(int number);
+    static string convertFloatToString(float number);
+
+    static char loadCharacter();
+
 
 };
 
