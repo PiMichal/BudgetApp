@@ -1,13 +1,5 @@
 #include "FileWithUsers.h"
 
-bool FileWithUsers::isTheFileEmpty() {
-
-    bool fileExists = xml.Load(USER_FILE_NAME);
-
-    return fileExists;
-
-}
-
 void FileWithUsers::addUserToFile(User user) {
 
     if (!isTheFileEmpty()) {
@@ -25,7 +17,7 @@ void FileWithUsers::addUserToFile(User user) {
     xml.AddElem("Name", user.getName());
     xml.AddElem("Surname", user.getSurname());
 
-    xml.Save(USER_FILE_NAME);
+    xml.Save(getFileName());
     xml.ResetPos();
 
 }
@@ -35,7 +27,7 @@ vector <User> FileWithUsers::loadUsersFromFile() {
     User user;
     vector <User> users;
 
-    if (xml.Load(USER_FILE_NAME)) {
+    if (xml.Load(getFileName())) {
         xml.FindElem("Users");
         xml.IntoElem();
 
@@ -78,6 +70,6 @@ void FileWithUsers::changeUserPasswordOnFile(int idOfTheLoggedInUser, string new
         }
             xml.OutOfElem();
     }
-    xml.Save(USER_FILE_NAME);
+    xml.Save(getFileName());
     xml.ResetPos();
 }

@@ -1,13 +1,5 @@
 #include "FileWithIncomes.h"
 
-bool FileWithIncomes::isTheFileEmpty(){
-
-    bool fileExists = xml.Load(INCOME_FILE_NAME);
-
-    return fileExists;
-
-}
-
 void FileWithIncomes::addIncomesToFile(Income income){
 
     if (!isTheFileEmpty()) {
@@ -24,7 +16,7 @@ void FileWithIncomes::addIncomesToFile(Income income){
     xml.AddElem("Item", income.getItem());
     xml.AddElem("Amount", AuxiliaryMethods::convertFloatToString(income.getAmount()));
 
-    xml.Save(INCOME_FILE_NAME);
+    xml.Save(getFileName());
     xml.ResetPos();
 
 }
@@ -34,7 +26,7 @@ vector <Income> FileWithIncomes::loadIncomesFromFile() {
     Income income;
     vector <Income> incomes;
 
-    if (xml.Load(INCOME_FILE_NAME)) {
+    if (xml.Load(getFileName())) {
         xml.FindElem("Clients");
         xml.IntoElem();
 

@@ -1,5 +1,17 @@
 #include "ClientManager.h"
 
+struct ClientManager::fromOldestToNewestIncome {
+    inline bool operator() (Income& i1, Income& i2) {
+        return (i1.getDate() < i2.getDate());
+    }
+};
+
+struct ClientManager::fromOldestToNewstExpenses {
+    inline bool operator() (Expense& e1, Expense& e2) {
+        return (e1.getDate() < e2.getDate());
+    }
+};
+
 bool ClientManager::checkNumber(string numberToCheck) {
 
     int counter = 0;
@@ -147,18 +159,6 @@ Expense ClientManager::introductionOfNewExpenses() {
 
     return expense;
 }
-
-struct ClientManager::fromOldestToNewestIncome {
-    inline bool operator() (Income& i1, Income& i2) {
-        return (i1.getDate() < i2.getDate());
-    }
-};
-
-struct ClientManager::fromOldestToNewstExpenses {
-    inline bool operator() (Expense& e1, Expense& e2) {
-        return (e1.getDate() < e2.getDate());
-    }
-};
 
 
 void ClientManager::differenceInIncomeAndExpenses(float incomes, float expenses) {

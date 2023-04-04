@@ -8,20 +8,17 @@
 #include "Income.h"
 #include "Markup.h"
 #include "DateValidation.h"
+#include "XmlFile.h"
 
 using namespace std;
 
-class FileWithIncomes{
+class FileWithIncomes :public XmlFile{
 
     CMarkup xml;
 
-    const string INCOME_FILE_NAME;
-
-    bool isTheFileEmpty();
-
 public:
 
-    FileWithIncomes(string incomeFileName) : INCOME_FILE_NAME(incomeFileName){};
+    FileWithIncomes(string incomeFileName) : XmlFile(incomeFileName){};
 
     vector <Income> loadIncomesFromFile();
 

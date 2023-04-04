@@ -22,10 +22,10 @@ public:
 
     static float convertStringToFloat(string number);
 
-    static string convertFloatToString(float number);
     static string loadNumber();
     static string loadLine();
     static string convertIntegerToString(int number);
+    static string convertFloatToString(float number);
 
     static char loadCharacter();
 

@@ -1,5 +1,12 @@
 #include "AuxiliaryMethods.h"
 
+string AuxiliaryMethods::removeCharacterFromNumber(string number) {
+
+    number.erase(find(number.begin(), number.end(), '.'));
+
+    return number;
+}
+
 bool AuxiliaryMethods::is_digits(string date) {
     return all_of(date.begin(), date.end(), ::isdigit);
 }
@@ -14,16 +21,18 @@ float AuxiliaryMethods::convertStringToFloat(string number) {
     return stof(number);
 }
 
-string AuxiliaryMethods::convertFloatToString(float number){
+string AuxiliaryMethods::loadLine() {
 
-    return to_string(number);
-}
+    cin.sync();
+    string in = "";
 
-string AuxiliaryMethods::removeCharacterFromNumber(string number) {
+    while (true){
+        getline(cin, in);
+        if (in.size() > 0)
+            break;
+    }
 
-    number.erase(find(number.begin(), number.end(), '.'));
-
-    return number;
+    return in;
 }
 
 string AuxiliaryMethods::loadNumber() {
@@ -43,11 +52,9 @@ string AuxiliaryMethods::convertIntegerToString(int number) {
     return str;
 }
 
-string AuxiliaryMethods::loadLine() {
-    cin.sync();
-    string in = "";
-    getline(cin, in);
-    return in;
+string AuxiliaryMethods::convertFloatToString(float number){
+
+    return to_string(number);
 }
 
 char AuxiliaryMethods::loadCharacter() {

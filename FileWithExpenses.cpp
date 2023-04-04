@@ -1,13 +1,5 @@
 #include "FileWithExpenses.h"
 
-bool FileWithExpenses::isTheFileEmpty(){
-
-    bool fileExists = xml.Load(EXPENSE_FILE_NAME);
-
-    return fileExists;
-
-}
-
 void FileWithExpenses::addExpensesToFile(Expense expense){
 
     if (!isTheFileEmpty()) {
@@ -24,7 +16,7 @@ void FileWithExpenses::addExpensesToFile(Expense expense){
     xml.AddElem("Item", expense.getItem());
     xml.AddElem("Amount", AuxiliaryMethods::convertFloatToString(expense.getAmount()));
 
-    xml.Save(EXPENSE_FILE_NAME);
+    xml.Save(getFileName());
     xml.ResetPos();
 
 }
@@ -34,7 +26,7 @@ vector <Expense> FileWithExpenses::loadExpensesFromFile() {
     Expense expense;
     vector <Expense> expenses;
 
-    if (xml.Load(EXPENSE_FILE_NAME)) {
+    if (xml.Load(getFileName())) {
         xml.FindElem("Clients");
         xml.IntoElem();
 

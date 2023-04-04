@@ -8,21 +8,18 @@
 #include "Expense.h"
 #include "Markup.h"
 #include "DateValidation.h"
+#include "XmlFile.h"
 
 using namespace std;
 
 
-class FileWithExpenses{
+class FileWithExpenses :public XmlFile{
 
     CMarkup xml;
 
-    const string EXPENSE_FILE_NAME;
-
-    bool isTheFileEmpty();
-
 public:
 
-    FileWithExpenses(string expenseFileName) : EXPENSE_FILE_NAME(expenseFileName){};
+    FileWithExpenses(string expenseFileName) : XmlFile(expenseFileName){};
 
     vector <Expense> loadExpensesFromFile();
 

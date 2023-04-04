@@ -33,12 +33,12 @@ class ClientManager{
     Expense introductionOfNewExpenses();
 
     bool checkNumber(string numberToCheck);
+
+    int dateEntry();
+
     void balanceOfIncomeAndExpenses(bool balanceThisMonth, bool previousMonthsBalance, bool balanceSheetForTheSelectedPeriod);
     void printingIncomeData(int i);
     void printingExpenseData(int i);
-
-
-
     void differenceInIncomeAndExpenses(float incomes, float expenses);
 
 public:
@@ -47,8 +47,6 @@ public:
         incomes = fileWithIncomes.loadIncomesFromFile();
         expenses = fileWithExpenses.loadExpensesFromFile();
     };
-
-    int dateEntry();
 
     void addIncomes();
     void addExpenses();
