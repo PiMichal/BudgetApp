@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 #include "Income.h"
 #include "Expense.h"
@@ -25,22 +26,35 @@ class ClientManager{
     vector <Income> incomes;
     vector <Expense> expenses;
 
+    struct fromOldestToNewestIncome;
+    struct fromOldestToNewstExpenses;
+
     Income introductionOfNewIncomes();
+    Expense introductionOfNewExpenses();
 
     bool checkNumber(string numberToCheck);
+    void balanceOfIncomeAndExpenses(bool balanceThisMonth, bool previousMonthsBalance, bool balanceSheetForTheSelectedPeriod);
+    void printingIncomeData(int i);
+    void printingExpenseData(int i);
 
-    string dateEntry();
 
+
+    void differenceInIncomeAndExpenses(float incomes, float expenses);
 
 public:
 
     ClientManager(int loggedInUserId, string incomeFileName, string expenseFileName) : LOGGED_IN_USER_ID(loggedInUserId), fileWithIncomes(incomeFileName), fileWithExpenses(expenseFileName){
         incomes = fileWithIncomes.loadIncomesFromFile();
+        expenses = fileWithExpenses.loadExpensesFromFile();
     };
 
+    int dateEntry();
+
     void addIncomes();
-
-
+    void addExpenses();
+    void balanceThisMonth();
+    void previousMonthsBalance();
+    void balanceSheetForTheSelectedPeriod();
 };
 
 

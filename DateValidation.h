@@ -14,17 +14,30 @@ using namespace std;
 
 class DateValidation{
 
+    int dateFrom;
+    int dateTo;
+
     static bool numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck);
 
-    static int countTheNumberOfDaysInAGivenMonth(int year, int month);
+    static int countTheNumberOfDaysInAGivenMonth(string dateEnteredForCheck);
 
-    static string dateConversionWithoutDash(string dateWithDash);
+
+
 
 public:
 
-    static bool dateCheck(string date);
+    void setDateFrom(int newDateFrom);
+    void setDateTo(int newDateTo);
 
-    static string currentDate();
+    static bool dateCheck(string date);
+    static bool balanceThisMonth(int date);
+    static bool previousMonthsBalance(int date);
+    bool balanceSheetForTheSelectedPeriod(int date);
+
+    static int dateConversionWithoutDash(string dateWithDash);
+    static int currentDate();
+
+    static string dateToFileConversion(int dateToConvert);
 
 
 };

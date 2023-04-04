@@ -37,11 +37,4 @@ public:
 };
 
 
-
-
-
-
-
-
-
 #endif // BUDGETAPP_H

@@ -62,24 +62,21 @@ void BudgetApp::selectTheOptionInTheCustomerMenu() {
             clientManager -> addIncomes();
             break;
         case '2':
-            //adresatMenadzer->wyszukajAdresatowPoImieniu();
+            clientManager -> addExpenses();
             break;
         case '3':
-            //adresatMenadzer->wyszukajAdresatowPoNazwisku();
+            clientManager -> balanceThisMonth();
             break;
         case '4':
-            //adresatMenadzer->wyswietlWszystkichAdresatow();
+            clientManager -> previousMonthsBalance();
             break;
         case '5':
-            //adresatMenadzer->usunAdresata();
+            clientManager -> balanceSheetForTheSelectedPeriod();
             break;
         case '6':
             //adresatMenadzer->edytujAdresata();
             break;
-        case '7':
-            //uzytkownikMenedzer.zmianaHaslaZalogowanegoUzytkownika();
-            break;
-        case '8':
+        case '9':
             logOut = false;
             userManager.setLoggedInUserId(0);
             delete clientManager;

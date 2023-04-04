@@ -20,7 +20,7 @@ void FileWithExpenses::addExpensesToFile(Expense expense){
     xml.AddElem("Client");
     xml.IntoElem();
     xml.AddElem("UserId", expense.getUserId());
-    xml.AddElem("Date", expense.getDate());
+    xml.AddElem("Date", DateValidation::dateToFileConversion(expense.getDate()));
     xml.AddElem("Item", expense.getItem());
     xml.AddElem("Amount", AuxiliaryMethods::convertFloatToString(expense.getAmount()));
 
@@ -29,7 +29,7 @@ void FileWithExpenses::addExpensesToFile(Expense expense){
 
 }
 
-vector <Expense> FileWithExpenses::loadIncomesFromFile() {
+vector <Expense> FileWithExpenses::loadExpensesFromFile() {
 
     Expense expense;
     vector <Expense> expenses;
@@ -44,7 +44,7 @@ vector <Expense> FileWithExpenses::loadIncomesFromFile() {
             xml.FindElem("UserId");
             expense.setUserId(AuxiliaryMethods::convertStringToInteger(xml.GetData()));
             xml.FindElem("Date");
-            expense.setDate(xml.GetData());
+            expense.setDate(DateValidation::dateConversionWithoutDash(xml.GetData()));
             xml.FindElem("Item");
             expense.setItem(xml.GetData());
             xml.FindElem("Amount");

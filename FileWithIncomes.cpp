@@ -20,7 +20,7 @@ void FileWithIncomes::addIncomesToFile(Income income){
     xml.AddElem("Client");
     xml.IntoElem();
     xml.AddElem("UserId", income.getUserId());
-    xml.AddElem("Date", income.getDate());
+    xml.AddElem("Date", DateValidation::dateToFileConversion(income.getDate()));
     xml.AddElem("Item", income.getItem());
     xml.AddElem("Amount", AuxiliaryMethods::convertFloatToString(income.getAmount()));
 
@@ -44,7 +44,7 @@ vector <Income> FileWithIncomes::loadIncomesFromFile() {
             xml.FindElem("UserId");
             income.setUserId(AuxiliaryMethods::convertStringToInteger(xml.GetData()));
             xml.FindElem("Date");
-            income.setDate(xml.GetData());
+            income.setDate(DateValidation::dateConversionWithoutDash(xml.GetData()));
             xml.FindElem("Item");
             income.setItem(xml.GetData());
             xml.FindElem("Amount");

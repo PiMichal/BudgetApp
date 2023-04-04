@@ -8,33 +8,35 @@ using namespace std;
 class Income{
 
     int userId;
-    float amount;
+    int date;
 
-    string date;
     string item;
+
+    float amount;
 
 
 
 public:
 
-    Income(int userId = 0, float amount = 0, string date = "", string item = ""){
+    Income(int userId = 0, int date = 0, string item = "", float amount = 0){
 
     this -> userId = userId;
-    this -> amount = amount;
     this -> date = date;
+    this -> amount = amount;
     this -> item = item;
 
     };
 
     void setUserId(int newId);
-    void setDate(string newDate);
+    void setDate(int newDate);
     void setItem(string newItem);
     void setAmount(float newAmount);
 
     int getUserId();
+    int getDate();
+
     float getAmount();
 
-    string getDate();
     string getItem();
 
 

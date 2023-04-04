@@ -1,27 +1,86 @@
 #include "DateValidation.h"
 
-bool DateValidation::numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck){
+void DateValidation::setDateFrom(int newDateFrom) {
+    dateFrom = newDateFrom;
+}
 
-    int baseYearMin = 20000101;
-    int baseYearMax = AuxiliaryMethods::convertStringToInteger(dateConversionWithoutDash(currentDate()));
+void DateValidation::setDateTo(int newDateTo) {
+    dateTo = newDateTo;
+}
 
-    int date = AuxiliaryMethods::convertStringToInteger(dateConversionWithoutDash(dateEnteredForCheck));
+bool DateValidation::numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck) {
 
-    int convertYearToInt = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(0,4));
-    int convertMonthToInt = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(5,2));
-    int convertDayToInt = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(8,2));
+    const int baseDateMin = 20000101;
 
+    int baseDateMax = currentDate();
 
-    if (convertDayToInt <= countTheNumberOfDaysInAGivenMonth(convertYearToInt, convertMonthToInt) && (date >= baseYearMin && date <= baseYearMax))
+    int date = dateConversionWithoutDash(dateEnteredForCheck);
+
+    int day = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(8,2));
+
+    if (day <= countTheNumberOfDaysInAGivenMonth(dateEnteredForCheck) && (date >= baseDateMin && date <= baseDateMax))
         return true;
 
     return false;
 
 }
 
-int DateValidation::countTheNumberOfDaysInAGivenMonth(int year, int month) {
+bool DateValidation::balanceThisMonth(int date) {
+
+    string todaysYearAndMonth = AuxiliaryMethods::convertIntegerToString(currentDate()).substr(0,6);
+    string yearAndMonthToCheck = AuxiliaryMethods::convertIntegerToString(date).substr(0,6);
+
+    if (todaysYearAndMonth == yearAndMonthToCheck)
+        return true;
+
+    return false;
+
+}
+
+bool DateValidation::previousMonthsBalance(int date) {
+
+    string todaysYear = AuxiliaryMethods::convertIntegerToString(currentDate()).substr(0,4);
+    string todayMonth = AuxiliaryMethods::convertIntegerToString(currentDate()).substr(5,2);
+    int temp = 0;
+
+    if (AuxiliaryMethods::convertStringToInteger(todayMonth) >= 10) {
+        temp = AuxiliaryMethods::convertStringToInteger(todayMonth) - 1;
+        todayMonth = AuxiliaryMethods::convertIntegerToString(temp);
+    } else if (AuxiliaryMethods::convertStringToInteger(todayMonth) >= 2) {
+        temp = AuxiliaryMethods::convertStringToInteger(todayMonth) - 1;
+        todayMonth = AuxiliaryMethods::convertIntegerToString(temp);
+        todayMonth = "0" + todayMonth;
+    } else {
+        temp = 12;
+        todayMonth = AuxiliaryMethods::convertIntegerToString(temp);
+    }
+
+    string todaysYearAndMonth = todaysYear + todayMonth;
+    string yearAndMonthToCheck = AuxiliaryMethods::convertIntegerToString(date).substr(0,6);
+
+    if (todaysYearAndMonth == yearAndMonthToCheck)
+        return true;
+
+    return false;
+
+}
+
+bool DateValidation::balanceSheetForTheSelectedPeriod(int date){
+
+    if (dateFrom <= date && dateTo >= date)
+        return true;
+
+    return false;
+
+}
+
+
+int DateValidation::countTheNumberOfDaysInAGivenMonth(string dateEnteredForCheck) {
 
     int numberOfDaysInAGivenMonth = 0;
+    int year = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(0,4));
+    int month = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(5,2));
+
     int arr[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (month == 2 && ((year % 400) || ((year % 100 != 0) && (year % 4 == 0))))
@@ -34,7 +93,7 @@ int DateValidation::countTheNumberOfDaysInAGivenMonth(int year, int month) {
 
 }
 
-string DateValidation::dateConversionWithoutDash(string dateWithDash){
+int DateValidation::dateConversionWithoutDash(string dateWithDash) {
 
     string dateWithoutDash = "";
 
@@ -42,19 +101,24 @@ string DateValidation::dateConversionWithoutDash(string dateWithDash){
     dateWithoutDash += dateWithDash.substr(5,2);
     dateWithoutDash += dateWithDash.substr(8,2);
 
-    return dateWithoutDash;
+    if (AuxiliaryMethods::is_digits(dateWithoutDash))
+        return AuxiliaryMethods::convertStringToInteger(dateWithoutDash);
+
+    return 0;
 }
 
 bool DateValidation::dateCheck(string dateEnteredForCheck) {
 
-    if (dateEnteredForCheck.size() == 10 && AuxiliaryMethods::is_digits(dateConversionWithoutDash(dateEnteredForCheck)) && numberOfDaysInTheGivenMonthCheck(dateEnteredForCheck))
-        return true;
+    const int valueToHelpCheckDate = 0;
 
-    return false;
+    if (dateEnteredForCheck.size() == 10 && dateConversionWithoutDash(dateEnteredForCheck) > valueToHelpCheckDate && numberOfDaysInTheGivenMonthCheck(dateEnteredForCheck))
+        return false;
+
+    return true;
 
 }
 
-string DateValidation::currentDate() {
+int DateValidation::currentDate() {
 
     auto t = time(nullptr);
     auto tm = *localtime(&t);
@@ -62,5 +126,15 @@ string DateValidation::currentDate() {
     oss << put_time(&tm, "%Y-%m-%d");
     auto str = oss.str();
 
-    return str;
+    return dateConversionWithoutDash(str);
+}
+
+string DateValidation::dateToFileConversion(int dateToConvert) {
+
+    string date = AuxiliaryMethods::convertIntegerToString(dateToConvert);
+
+    date.insert(4, "-");
+    date.insert(7, "-");
+
+    return date;
 }
