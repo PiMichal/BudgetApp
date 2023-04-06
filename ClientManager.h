@@ -17,11 +17,11 @@ using namespace std;
 
 class ClientManager{
 
-    FileWithExpenses fileWithExpenses;
-    FileWithIncomes fileWithIncomes;
-    DateValidation dateValidation;
-
     const int LOGGED_IN_USER_ID;
+
+    FileWithIncomes fileWithIncomes;
+    FileWithExpenses fileWithExpenses;
+    DateValidation dateValidation;
 
     vector <Income> incomes;
     vector <Expense> expenses;
