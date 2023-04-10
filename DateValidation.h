@@ -36,6 +36,7 @@ public:
 
     static int dateConversionWithoutDash(string dateWithDash);
     static int currentDate();
+    static int dateEntry();
 
     static string dateToFileConversion(int dateToConvert);
 

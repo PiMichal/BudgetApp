@@ -6,7 +6,6 @@
 
 #include "AuxiliaryMethods.h"
 #include "Expense.h"
-#include "Markup.h"
 #include "DateValidation.h"
 #include "XmlFile.h"
 
@@ -15,7 +14,6 @@ using namespace std;
 
 class FileWithExpenses :public XmlFile{
 
-    CMarkup xml;
 
 public:
 

@@ -17,6 +17,7 @@ class AuxiliaryMethods{
 public:
 
     static bool is_digits(string date);
+    static bool checkNumber(string numberToCheck);
 
     static int convertStringToInteger(string number);
 

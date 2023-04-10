@@ -8,15 +8,17 @@
 using namespace std;
 
 
-class XmlFile{
+class XmlFile {
 
-    CMarkup xml;
     const string FILE_NAME;
+
+protected:
+    CMarkup xml;
 
 
 public:
 
-    XmlFile(string fileName) : FILE_NAME(fileName){};
+    XmlFile(string fileName) : FILE_NAME(fileName) {};
 
     string getFileName();
 

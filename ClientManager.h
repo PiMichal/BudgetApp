@@ -32,10 +32,6 @@ class ClientManager{
     Income introductionOfNewIncomes();
     Expense introductionOfNewExpenses();
 
-    bool checkNumber(string numberToCheck);
-
-    int dateEntry();
-
     void balanceOfIncomeAndExpenses(bool balanceThisMonth, bool previousMonthsBalance, bool balanceSheetForTheSelectedPeriod);
     void printingIncomeData(int i);
     void printingExpenseData(int i);

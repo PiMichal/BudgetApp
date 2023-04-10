@@ -6,7 +6,6 @@
 
 #include "AuxiliaryMethods.h"
 #include "Income.h"
-#include "Markup.h"
 #include "DateValidation.h"
 #include "XmlFile.h"
 
@@ -14,7 +13,6 @@ using namespace std;
 
 class FileWithIncomes :public XmlFile{
 
-    CMarkup xml;
 
 public:
 

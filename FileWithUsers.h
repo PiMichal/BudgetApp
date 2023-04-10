@@ -6,7 +6,6 @@
 
 #include "AuxiliaryMethods.h"
 #include "User.h"
-#include "Markup.h"
 #include "XmlFile.h"
 
 using namespace std;
@@ -14,7 +13,6 @@ using namespace std;
 
 class FileWithUsers :public XmlFile{
 
-    CMarkup xml;
 
 public:
 

@@ -11,14 +11,15 @@ void DateValidation::setDateTo(int newDateTo) {
 bool DateValidation::numberOfDaysInTheGivenMonthCheck(string dateEnteredForCheck) {
 
     const int baseDateMin = 20000101;
-
+    const int baseMonth = 12;
     int baseDateMax = currentDate();
 
     int date = dateConversionWithoutDash(dateEnteredForCheck);
 
+    int month = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(5,2));
     int day = AuxiliaryMethods::convertStringToInteger(dateEnteredForCheck.substr(8,2));
 
-    if (day <= countTheNumberOfDaysInAGivenMonth(dateEnteredForCheck) && (date >= baseDateMin && date <= baseDateMax))
+    if (day <= countTheNumberOfDaysInAGivenMonth(dateEnteredForCheck) && (date >= baseDateMin && date <= baseDateMax) && month <= baseMonth)
         return true;
 
     return false;
@@ -74,7 +75,6 @@ bool DateValidation::balanceSheetForTheSelectedPeriod(int date){
 
 }
 
-
 int DateValidation::countTheNumberOfDaysInAGivenMonth(string dateEnteredForCheck) {
 
     int numberOfDaysInAGivenMonth = 0;
@@ -83,7 +83,7 @@ int DateValidation::countTheNumberOfDaysInAGivenMonth(string dateEnteredForCheck
 
     int arr[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    if (month == 2 && ((year % 400) || ((year % 100 != 0) && (year % 4 == 0))))
+    if (((year % 100 == 0) && (year % 400 == 0)) || (year % 4 == 0))
         numberOfDaysInAGivenMonth = arr[month-1]+1;
 
     else
@@ -91,20 +91,6 @@ int DateValidation::countTheNumberOfDaysInAGivenMonth(string dateEnteredForCheck
 
     return numberOfDaysInAGivenMonth;
 
-}
-
-int DateValidation::dateConversionWithoutDash(string dateWithDash) {
-
-    string dateWithoutDash = "";
-
-    dateWithoutDash = dateWithDash.substr(0,4);
-    dateWithoutDash += dateWithDash.substr(5,2);
-    dateWithoutDash += dateWithDash.substr(8,2);
-
-    if (AuxiliaryMethods::is_digits(dateWithoutDash))
-        return AuxiliaryMethods::convertStringToInteger(dateWithoutDash);
-
-    return 0;
 }
 
 bool DateValidation::dateCheck(string dateEnteredForCheck) {
@@ -127,6 +113,34 @@ int DateValidation::currentDate() {
     auto str = oss.str();
 
     return dateConversionWithoutDash(str);
+}
+
+int DateValidation::dateConversionWithoutDash(string dateWithDash) {
+
+    string dateWithoutDash = "";
+
+    dateWithoutDash = dateWithDash.substr(0,4);
+    dateWithoutDash += dateWithDash.substr(5,2);
+    dateWithoutDash += dateWithDash.substr(8,2);
+
+    if (AuxiliaryMethods::is_digits(dateWithoutDash))
+        return AuxiliaryMethods::convertStringToInteger(dateWithoutDash);
+
+    return 0;
+}
+
+int DateValidation::dateEntry() {
+
+    string date;
+    cout << "Enter date (rrrr-mm-dd): ";
+    date = AuxiliaryMethods::loadLine();
+
+    while(dateCheck(date)) {
+        cout << "Incorrect date. Enter again: ";
+        date = AuxiliaryMethods::loadLine();
+    }
+
+    return dateConversionWithoutDash(date);
 }
 
 string DateValidation::dateToFileConversion(int dateToConvert) {

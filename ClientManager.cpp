@@ -12,48 +12,6 @@ struct ClientManager::fromOldestToNewstExpenses {
     }
 };
 
-bool ClientManager::checkNumber(string numberToCheck) {
-
-    int counter = 0;
-    int wordLength = 0;
-
-    string numbersAfterTheComma = "";
-
-    if (numberToCheck.size() >= 1) {
-        for (int i = 0; i < (int) numberToCheck.size(); i++) {
-            if (numberToCheck[i] == '.')
-                counter += 1;
-        }
-    } else
-        return true;
-
-    if (counter == 1) {
-        numbersAfterTheComma = numberToCheck.substr(numberToCheck.find("."),numberToCheck.size());
-        wordLength = numbersAfterTheComma.size();
-        numberToCheck.erase(find(numberToCheck.begin(), numberToCheck.end(), '.'));
-    }
-
-
-    if (AuxiliaryMethods::is_digits(numberToCheck) && (counter == 0 || counter == 1) && wordLength <= 3)
-        return false;
-
-    return true;
-}
-
-int ClientManager::dateEntry() {
-
-    string date;
-    cout << "Enter date (rrrr-mm-dd): ";
-    date = AuxiliaryMethods::loadLine();
-
-    while(dateValidation.dateCheck(date)) {
-        cout << "Incorrect date. Enter again: ";
-        date = AuxiliaryMethods::loadLine();
-    }
-
-    return DateValidation::dateConversionWithoutDash(date);
-}
-
 void ClientManager::addIncomes() {
 
     system("cls");
@@ -81,7 +39,7 @@ Income ClientManager::introductionOfNewIncomes() {
     while (char sign = AuxiliaryMethods::loadCharacter()) {
 
         if (sign == 'n' || sign == 'N') {
-            income.setDate(dateEntry());
+            income.setDate(DateValidation::dateEntry());
             break;
 
         } else if(sign == 'y' || sign == 'Y') {
@@ -98,7 +56,7 @@ Income ClientManager::introductionOfNewIncomes() {
 
     string number = AuxiliaryMethods::loadNumber();
 
-    while(checkNumber(number)) {
+    while(AuxiliaryMethods::checkNumber(number)) {
         cout << "Invalid number. Try again: ";
         number = AuxiliaryMethods::loadNumber();
     }
@@ -134,7 +92,7 @@ Expense ClientManager::introductionOfNewExpenses() {
 
     while (char sign = AuxiliaryMethods::loadCharacter()) {
         if (sign == 'n' || sign == 'N') {
-            expense.setDate(dateEntry());
+            expense.setDate(DateValidation::dateEntry());
             break;
         } else if(sign == 'y' || sign == 'Y') {
             expense.setDate(dateValidation.currentDate());
@@ -150,7 +108,7 @@ Expense ClientManager::introductionOfNewExpenses() {
 
     string number = AuxiliaryMethods::loadNumber();
 
-    while(checkNumber(number)) {
+    while(AuxiliaryMethods::checkNumber(number)) {
         cout << "Invalid number. Try again: ";
         number = AuxiliaryMethods::loadNumber();
     }
@@ -186,18 +144,18 @@ void ClientManager::differenceInIncomeAndExpenses(float incomes, float expenses)
 void ClientManager::printingIncomeData(int i) {
 
     cout << endl;
-    cout << DateValidation::dateToFileConversion(incomes[i].getDate()) << endl;
-    cout << incomes[i].getItem() << endl;
-    cout << incomes[i].getAmount() << endl;
+    cout << "Income date: " << fixed << setprecision(2) << DateValidation::dateToFileConversion(incomes[i].getDate()) << endl;
+    cout << "Income item: " << fixed << setprecision(2) << incomes[i].getItem() << endl;
+    cout << "Income amount: " << fixed << setprecision(2) << incomes[i].getAmount() << endl;
 
 }
 
 void ClientManager::printingExpenseData(int i) {
 
     cout << endl;
-    cout << DateValidation::dateToFileConversion(expenses[i].getDate()) << endl;
-    cout << expenses[i].getItem() << endl;
-    cout << expenses[i].getAmount() << endl;
+    cout << "Expense date: " << fixed << setprecision(2) <<  DateValidation::dateToFileConversion(expenses[i].getDate()) << endl;
+    cout << "Expense item: " << fixed << setprecision(2) <<  expenses[i].getItem() << endl;
+    cout << "Expense amount: " << fixed << setprecision(2) <<  expenses[i].getAmount() << endl;
 
 }
 
@@ -218,12 +176,12 @@ void ClientManager::balanceSheetForTheSelectedPeriod() {
 
     system("cls");
     cout << "Since when to show the balance sheet ? " << endl;
-    dateValidation.setDateFrom(dateEntry());
+    dateValidation.setDateFrom(DateValidation::dateEntry());
 
     cout << endl;
 
     cout << "By when to show the balance sheet ? " << endl;
-    dateValidation.setDateTo(dateEntry());
+    dateValidation.setDateTo(DateValidation::dateEntry());
 
     balanceOfIncomeAndExpenses(false, false, true);
 
